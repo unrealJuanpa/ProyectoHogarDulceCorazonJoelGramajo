@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="732cedc4a6624ca6b9aa3894aee9a940" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="DatabaseHogarModel.Adopciones" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Asignar_padecimiento_a_ficha_médica" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Asignar_padre_a_adopción" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Candidatos_a_padres_adoptivos" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Estados_de_tratamientos" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Fichas_médicas" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Géneros" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Niños" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Padecimientos" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseHogarModel.Regreso_de_niños" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship7" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship8" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship9" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship4" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship5" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship6" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship10" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship3" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseHogarModel.Relationship1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

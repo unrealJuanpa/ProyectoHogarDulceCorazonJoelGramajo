@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProyectoHogarDulceCorazonJoelGramajo.Models.Padecimientos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_padecimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notas_adicionales)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_padecimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notas_adicionales)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Padecimiento }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Padecimiento }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Padecimiento })
+        </td>
+    </tr>
+}
+
+</table>

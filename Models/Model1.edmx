@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseHogarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adopciones">
+          <Key>
+            <PropertyRef Name="Adopción_de_niño" />
+          </Key>
+          <Property Name="Adopción_de_niño" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Niño" Type="int" />
+          <Property Name="Fecha_adopción" Type="date" Nullable="false" />
+          <Property Name="Fecha_mudanza" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Asignar_padecimiento_a_ficha_médica">
+          <Key>
+            <PropertyRef Name="Código_de_asignación_padecimiento" />
+          </Key>
+          <Property Name="Código_de_asignación_padecimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_de_diagnóstico" Type="date" Nullable="false" />
+          <Property Name="Padecimiento" Type="int" />
+          <Property Name="Código_ficha_médica" Type="varchar" MaxLength="256" />
+          <Property Name="Estado_de_tratamiento" Type="int" />
+        </EntityType>
+        <EntityType Name="Asignar_padre_a_adopción">
+          <Key>
+            <PropertyRef Name="Padre_adopción" />
+          </Key>
+          <Property Name="Padre_adopción" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adopción_de_niño" Type="int" />
+          <Property Name="Candidato_a_padre_adoptivo" Type="int" />
+        </EntityType>
+        <EntityType Name="Candidatos_a_padres_adoptivos">
+          <Key>
+            <PropertyRef Name="Padre_adoptivo" />
+          </Key>
+          <Property Name="Padre_adoptivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_padre" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="DPI" Type="bigint" Nullable="false" />
+          <Property Name="Dirección" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Teléfono" Type="int" Nullable="false" />
+          <Property Name="Dirección_de_trabajo" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estados_de_tratamientos">
+          <Key>
+            <PropertyRef Name="Estado_de_tratamiento" />
+          </Key>
+          <Property Name="Estado_de_tratamiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_estado_tratamiento" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fichas_médicas">
+          <Key>
+            <PropertyRef Name="Código_ficha_médica" />
+          </Key>
+          <Property Name="Código_ficha_médica" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Fecha_de_emisión" Type="date" Nullable="false" />
+          <Property Name="Niño" Type="int" />
+        </EntityType>
+        <EntityType Name="Géneros">
+          <Key>
+            <PropertyRef Name="Género" />
+          </Key>
+          <Property Name="Género" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreGenero" Type="varchar" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Niños">
+          <Key>
+            <PropertyRef Name="Niño" />
+          </Key>
+          <Property Name="Niño" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="CUI_niño" Type="bigint" Nullable="false" />
+          <Property Name="Fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="Género" Type="int" />
+        </EntityType>
+        <EntityType Name="Padecimientos">
+          <Key>
+            <PropertyRef Name="Padecimiento" />
+          </Key>
+          <Property Name="Padecimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_padecimiento" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Notas_adicionales" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="Regreso_de_niños">
+          <Key>
+            <PropertyRef Name="Regreso_de_niño" />
+          </Key>
+          <Property Name="Regreso_de_niño" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adopción_de_niño" Type="int" />
+          <Property Name="Fecha_regreso" Type="date" Nullable="false" />
+          <Property Name="Motivo_regreso" Type="varchar" MaxLength="4096" Nullable="false" />
+        </EntityType>
+        <Association Name="Relationship1">
+          <End Role="Géneros" Type="Self.Géneros" Multiplicity="0..1" />
+          <End Role="Niños" Type="Self.Niños" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Géneros">
+              <PropertyRef Name="Género" />
+            </Principal>
+            <Dependent Role="Niños">
+              <PropertyRef Name="Género" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship10">
+          <End Role="Candidatos_a_padres_adoptivos" Type="Self.Candidatos_a_padres_adoptivos" Multiplicity="0..1" />
+          <End Role="Asignar_padre_a_adopción" Type="Self.Asignar_padre_a_adopción" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidatos_a_padres_adoptivos">
+              <PropertyRef Name="Padre_adoptivo" />
+            </Principal>
+            <Dependent Role="Asignar_padre_a_adopción">
+              <PropertyRef Name="Candidato_a_padre_adoptivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship3">
+          <End Role="Niños" Type="Self.Niños" Multiplicity="0..1" />
+          <End Role="Fichas_médicas" Type="Self.Fichas_médicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niños">
+              <PropertyRef Name="Niño" />
+            </Principal>
+            <Dependent Role="Fichas_médicas">
+              <PropertyRef Name="Niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship4">
+          <End Role="Fichas_médicas" Type="Self.Fichas_médicas" Multiplicity="0..1" />
+          <End Role="Asignar_padecimiento_a_ficha_médica" Type="Self.Asignar_padecimiento_a_ficha_médica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fichas_médicas">
+              <PropertyRef Name="Código_ficha_médica" />
+            </Principal>
+            <Dependent Role="Asignar_padecimiento_a_ficha_médica">
+              <PropertyRef Name="Código_ficha_médica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship5">
+          <End Role="Padecimientos" Type="Self.Padecimientos" Multiplicity="0..1" />
+          <End Role="Asignar_padecimiento_a_ficha_médica" Type="Self.Asignar_padecimiento_a_ficha_médica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padecimientos">
+              <PropertyRef Name="Padecimiento" />
+            </Principal>
+            <Dependent Role="Asignar_padecimiento_a_ficha_médica">
+              <PropertyRef Name="Padecimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship6">
+          <End Role="Estados_de_tratamientos" Type="Self.Estados_de_tratamientos" Multiplicity="0..1" />
+          <End Role="Asignar_padecimiento_a_ficha_médica" Type="Self.Asignar_padecimiento_a_ficha_médica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados_de_tratamientos">
+              <PropertyRef Name="Estado_de_tratamiento" />
+            </Principal>
+            <Dependent Role="Asignar_padecimiento_a_ficha_médica">
+              <PropertyRef Name="Estado_de_tratamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship7">
+          <End Role="Niños" Type="Self.Niños" Multiplicity="0..1" />
+          <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niños">
+              <PropertyRef Name="Niño" />
+            </Principal>
+            <Dependent Role="Adopciones">
+              <PropertyRef Name="Niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship8">
+          <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="0..1" />
+          <End Role="Regreso_de_niños" Type="Self.Regreso_de_niños" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adopciones">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Principal>
+            <Dependent Role="Regreso_de_niños">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship9">
+          <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="0..1" />
+          <End Role="Asignar_padre_a_adopción" Type="Self.Asignar_padre_a_adopción" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adopciones">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Principal>
+            <Dependent Role="Asignar_padre_a_adopción">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseHogarModelStoreContainer">
+          <EntitySet Name="Adopciones" EntityType="Self.Adopciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asignar_padecimiento_a_ficha_médica" EntityType="Self.Asignar_padecimiento_a_ficha_médica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asignar_padre_a_adopción" EntityType="Self.Asignar_padre_a_adopción" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Candidatos_a_padres_adoptivos" EntityType="Self.Candidatos_a_padres_adoptivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados_de_tratamientos" EntityType="Self.Estados_de_tratamientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fichas_médicas" EntityType="Self.Fichas_médicas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Géneros" EntityType="Self.Géneros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Niños" EntityType="Self.Niños" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Padecimientos" EntityType="Self.Padecimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regreso_de_niños" EntityType="Self.Regreso_de_niños" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Relationship1" Association="Self.Relationship1">
+            <End Role="Géneros" EntitySet="Géneros" />
+            <End Role="Niños" EntitySet="Niños" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship10" Association="Self.Relationship10">
+            <End Role="Candidatos_a_padres_adoptivos" EntitySet="Candidatos_a_padres_adoptivos" />
+            <End Role="Asignar_padre_a_adopción" EntitySet="Asignar_padre_a_adopción" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship3" Association="Self.Relationship3">
+            <End Role="Niños" EntitySet="Niños" />
+            <End Role="Fichas_médicas" EntitySet="Fichas_médicas" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship4" Association="Self.Relationship4">
+            <End Role="Fichas_médicas" EntitySet="Fichas_médicas" />
+            <End Role="Asignar_padecimiento_a_ficha_médica" EntitySet="Asignar_padecimiento_a_ficha_médica" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship5" Association="Self.Relationship5">
+            <End Role="Padecimientos" EntitySet="Padecimientos" />
+            <End Role="Asignar_padecimiento_a_ficha_médica" EntitySet="Asignar_padecimiento_a_ficha_médica" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship6" Association="Self.Relationship6">
+            <End Role="Estados_de_tratamientos" EntitySet="Estados_de_tratamientos" />
+            <End Role="Asignar_padecimiento_a_ficha_médica" EntitySet="Asignar_padecimiento_a_ficha_médica" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship7" Association="Self.Relationship7">
+            <End Role="Niños" EntitySet="Niños" />
+            <End Role="Adopciones" EntitySet="Adopciones" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship8" Association="Self.Relationship8">
+            <End Role="Adopciones" EntitySet="Adopciones" />
+            <End Role="Regreso_de_niños" EntitySet="Regreso_de_niños" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship9" Association="Self.Relationship9">
+            <End Role="Adopciones" EntitySet="Adopciones" />
+            <End Role="Asignar_padre_a_adopción" EntitySet="Asignar_padre_a_adopción" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseHogarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adopciones">
+          <Key>
+            <PropertyRef Name="Adopción_de_niño" />
+          </Key>
+          <Property Name="Adopción_de_niño" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Niño" Type="Int32" />
+          <Property Name="Fecha_adopción" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_mudanza" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Niños" Relationship="Self.Relationship7" FromRole="Adopciones" ToRole="Niños" />
+          <NavigationProperty Name="Regreso_de_niños" Relationship="Self.Relationship8" FromRole="Adopciones" ToRole="Regreso_de_niños" />
+          <NavigationProperty Name="Asignar_padre_a_adopción" Relationship="Self.Relationship9" FromRole="Adopciones" ToRole="Asignar_padre_a_adopción" />
+        </EntityType>
+        <EntityType Name="Asignar_padecimiento_a_ficha_médica">
+          <Key>
+            <PropertyRef Name="Código_de_asignación_padecimiento" />
+          </Key>
+          <Property Name="Código_de_asignación_padecimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_de_diagnóstico" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Padecimiento" Type="Int32" />
+          <Property Name="Código_ficha_médica" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Estado_de_tratamiento" Type="Int32" />
+          <NavigationProperty Name="Fichas_médicas" Relationship="Self.Relationship4" FromRole="Asignar_padecimiento_a_ficha_médica" ToRole="Fichas_médicas" />
+          <NavigationProperty Name="Padecimientos" Relationship="Self.Relationship5" FromRole="Asignar_padecimiento_a_ficha_médica" ToRole="Padecimientos" />
+          <NavigationProperty Name="Estados_de_tratamientos" Relationship="Self.Relationship6" FromRole="Asignar_padecimiento_a_ficha_médica" ToRole="Estados_de_tratamientos" />
+        </EntityType>
+        <EntityType Name="Asignar_padre_a_adopción">
+          <Key>
+            <PropertyRef Name="Padre_adopción" />
+          </Key>
+          <Property Name="Padre_adopción" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adopción_de_niño" Type="Int32" />
+          <Property Name="Candidato_a_padre_adoptivo" Type="Int32" />
+          <NavigationProperty Name="Adopciones" Relationship="Self.Relationship9" FromRole="Asignar_padre_a_adopción" ToRole="Adopciones" />
+          <NavigationProperty Name="Candidatos_a_padres_adoptivos" Relationship="Self.Relationship10" FromRole="Asignar_padre_a_adopción" ToRole="Candidatos_a_padres_adoptivos" />
+        </EntityType>
+        <EntityType Name="Candidatos_a_padres_adoptivos">
+          <Key>
+            <PropertyRef Name="Padre_adoptivo" />
+          </Key>
+          <Property Name="Padre_adoptivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_padre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DPI" Type="Int64" Nullable="false" />
+          <Property Name="Dirección" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Teléfono" Type="Int32" Nullable="false" />
+          <Property Name="Dirección_de_trabajo" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Asignar_padre_a_adopción" Relationship="Self.Relationship10" FromRole="Candidatos_a_padres_adoptivos" ToRole="Asignar_padre_a_adopción" />
+        </EntityType>
+        <EntityType Name="Estados_de_tratamientos">
+          <Key>
+            <PropertyRef Name="Estado_de_tratamiento" />
+          </Key>
+          <Property Name="Estado_de_tratamiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_estado_tratamiento" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Asignar_padecimiento_a_ficha_médica" Relationship="Self.Relationship6" FromRole="Estados_de_tratamientos" ToRole="Asignar_padecimiento_a_ficha_médica" />
+        </EntityType>
+        <EntityType Name="Fichas_médicas">
+          <Key>
+            <PropertyRef Name="Código_ficha_médica" />
+          </Key>
+          <Property Name="Código_ficha_médica" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_de_emisión" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Niño" Type="Int32" />
+          <NavigationProperty Name="Asignar_padecimiento_a_ficha_médica" Relationship="Self.Relationship4" FromRole="Fichas_médicas" ToRole="Asignar_padecimiento_a_ficha_médica" />
+          <NavigationProperty Name="Niños" Relationship="Self.Relationship3" FromRole="Fichas_médicas" ToRole="Niños" />
+        </EntityType>
+        <EntityType Name="Géneros">
+          <Key>
+            <PropertyRef Name="Género" />
+          </Key>
+          <Property Name="Género" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreGenero" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Niños" Relationship="Self.Relationship1" FromRole="Géneros" ToRole="Niños" />
+        </EntityType>
+        <EntityType Name="Niños">
+          <Key>
+            <PropertyRef Name="Niño" />
+          </Key>
+          <Property Name="Niño" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUI_niño" Type="Int64" Nullable="false" />
+          <Property Name="Fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Género" Type="Int32" />
+          <NavigationProperty Name="Adopciones" Relationship="Self.Relationship7" FromRole="Niños" ToRole="Adopciones" />
+          <NavigationProperty Name="Fichas_médicas" Relationship="Self.Relationship3" FromRole="Niños" ToRole="Fichas_médicas" />
+          <NavigationProperty Name="Géneros" Relationship="Self.Relationship1" FromRole="Niños" ToRole="Géneros" />
+        </EntityType>
+        <EntityType Name="Padecimientos">
+          <Key>
+            <PropertyRef Name="Padecimiento" />
+          </Key>
+          <Property Name="Padecimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_padecimiento" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Notas_adicionales" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Asignar_padecimiento_a_ficha_médica" Relationship="Self.Relationship5" FromRole="Padecimientos" ToRole="Asignar_padecimiento_a_ficha_médica" />
+        </EntityType>
+        <EntityType Name="Regreso_de_niños">
+          <Key>
+            <PropertyRef Name="Regreso_de_niño" />
+          </Key>
+          <Property Name="Regreso_de_niño" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adopción_de_niño" Type="Int32" />
+          <Property Name="Fecha_regreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Motivo_regreso" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Adopciones" Relationship="Self.Relationship8" FromRole="Regreso_de_niños" ToRole="Adopciones" />
+        </EntityType>
+        <Association Name="Relationship7">
+          <End Role="Niños" Type="Self.Niños" Multiplicity="0..1" />
+          <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niños">
+              <PropertyRef Name="Niño" />
+            </Principal>
+            <Dependent Role="Adopciones">
+              <PropertyRef Name="Niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship8">
+          <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="0..1" />
+          <End Role="Regreso_de_niños" Type="Self.Regreso_de_niños" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adopciones">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Principal>
+            <Dependent Role="Regreso_de_niños">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship9">
+          <End Role="Adopciones" Type="Self.Adopciones" Multiplicity="0..1" />
+          <End Role="Asignar_padre_a_adopción" Type="Self.Asignar_padre_a_adopción" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adopciones">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Principal>
+            <Dependent Role="Asignar_padre_a_adopción">
+              <PropertyRef Name="Adopción_de_niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship4">
+          <End Role="Fichas_médicas" Type="Self.Fichas_médicas" Multiplicity="0..1" />
+          <End Role="Asignar_padecimiento_a_ficha_médica" Type="Self.Asignar_padecimiento_a_ficha_médica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fichas_médicas">
+              <PropertyRef Name="Código_ficha_médica" />
+            </Principal>
+            <Dependent Role="Asignar_padecimiento_a_ficha_médica">
+              <PropertyRef Name="Código_ficha_médica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship5">
+          <End Role="Padecimientos" Type="Self.Padecimientos" Multiplicity="0..1" />
+          <End Role="Asignar_padecimiento_a_ficha_médica" Type="Self.Asignar_padecimiento_a_ficha_médica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padecimientos">
+              <PropertyRef Name="Padecimiento" />
+            </Principal>
+            <Dependent Role="Asignar_padecimiento_a_ficha_médica">
+              <PropertyRef Name="Padecimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship6">
+          <End Role="Estados_de_tratamientos" Type="Self.Estados_de_tratamientos" Multiplicity="0..1" />
+          <End Role="Asignar_padecimiento_a_ficha_médica" Type="Self.Asignar_padecimiento_a_ficha_médica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados_de_tratamientos">
+              <PropertyRef Name="Estado_de_tratamiento" />
+            </Principal>
+            <Dependent Role="Asignar_padecimiento_a_ficha_médica">
+              <PropertyRef Name="Estado_de_tratamiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship10">
+          <End Role="Candidatos_a_padres_adoptivos" Type="Self.Candidatos_a_padres_adoptivos" Multiplicity="0..1" />
+          <End Role="Asignar_padre_a_adopción" Type="Self.Asignar_padre_a_adopción" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidatos_a_padres_adoptivos">
+              <PropertyRef Name="Padre_adoptivo" />
+            </Principal>
+            <Dependent Role="Asignar_padre_a_adopción">
+              <PropertyRef Name="Candidato_a_padre_adoptivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship3">
+          <End Role="Niños" Type="Self.Niños" Multiplicity="0..1" />
+          <End Role="Fichas_médicas" Type="Self.Fichas_médicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Niños">
+              <PropertyRef Name="Niño" />
+            </Principal>
+            <Dependent Role="Fichas_médicas">
+              <PropertyRef Name="Niño" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Relationship1">
+          <End Role="Géneros" Type="Self.Géneros" Multiplicity="0..1" />
+          <End Role="Niños" Type="Self.Niños" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Géneros">
+              <PropertyRef Name="Género" />
+            </Principal>
+            <Dependent Role="Niños">
+              <PropertyRef Name="Género" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseHogarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adopciones" EntityType="Self.Adopciones" />
+          <EntitySet Name="Asignar_padecimiento_a_ficha_médica" EntityType="Self.Asignar_padecimiento_a_ficha_médica" />
+          <EntitySet Name="Asignar_padre_a_adopción" EntityType="Self.Asignar_padre_a_adopción" />
+          <EntitySet Name="Candidatos_a_padres_adoptivos" EntityType="Self.Candidatos_a_padres_adoptivos" />
+          <EntitySet Name="Estados_de_tratamientos" EntityType="Self.Estados_de_tratamientos" />
+          <EntitySet Name="Fichas_médicas" EntityType="Self.Fichas_médicas" />
+          <EntitySet Name="Géneros" EntityType="Self.Géneros" />
+          <EntitySet Name="Niños" EntityType="Self.Niños" />
+          <EntitySet Name="Padecimientos" EntityType="Self.Padecimientos" />
+          <EntitySet Name="Regreso_de_niños" EntityType="Self.Regreso_de_niños" />
+          <AssociationSet Name="Relationship7" Association="Self.Relationship7">
+            <End Role="Niños" EntitySet="Niños" />
+            <End Role="Adopciones" EntitySet="Adopciones" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship8" Association="Self.Relationship8">
+            <End Role="Adopciones" EntitySet="Adopciones" />
+            <End Role="Regreso_de_niños" EntitySet="Regreso_de_niños" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship9" Association="Self.Relationship9">
+            <End Role="Adopciones" EntitySet="Adopciones" />
+            <End Role="Asignar_padre_a_adopción" EntitySet="Asignar_padre_a_adopción" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship4" Association="Self.Relationship4">
+            <End Role="Fichas_médicas" EntitySet="Fichas_médicas" />
+            <End Role="Asignar_padecimiento_a_ficha_médica" EntitySet="Asignar_padecimiento_a_ficha_médica" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship5" Association="Self.Relationship5">
+            <End Role="Padecimientos" EntitySet="Padecimientos" />
+            <End Role="Asignar_padecimiento_a_ficha_médica" EntitySet="Asignar_padecimiento_a_ficha_médica" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship6" Association="Self.Relationship6">
+            <End Role="Estados_de_tratamientos" EntitySet="Estados_de_tratamientos" />
+            <End Role="Asignar_padecimiento_a_ficha_médica" EntitySet="Asignar_padecimiento_a_ficha_médica" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship10" Association="Self.Relationship10">
+            <End Role="Candidatos_a_padres_adoptivos" EntitySet="Candidatos_a_padres_adoptivos" />
+            <End Role="Asignar_padre_a_adopción" EntitySet="Asignar_padre_a_adopción" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship3" Association="Self.Relationship3">
+            <End Role="Niños" EntitySet="Niños" />
+            <End Role="Fichas_médicas" EntitySet="Fichas_médicas" />
+          </AssociationSet>
+          <AssociationSet Name="Relationship1" Association="Self.Relationship1">
+            <End Role="Géneros" EntitySet="Géneros" />
+            <End Role="Niños" EntitySet="Niños" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseHogarModelStoreContainer" CdmEntityContainer="DatabaseHogarEntities">
+          <EntitySetMapping Name="Adopciones">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Adopciones">
+              <MappingFragment StoreEntitySet="Adopciones">
+                <ScalarProperty Name="Adopción_de_niño" ColumnName="Adopción_de_niño" />
+                <ScalarProperty Name="Niño" ColumnName="Niño" />
+                <ScalarProperty Name="Fecha_adopción" ColumnName="Fecha_adopción" />
+                <ScalarProperty Name="Fecha_mudanza" ColumnName="Fecha_mudanza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asignar_padecimiento_a_ficha_médica">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Asignar_padecimiento_a_ficha_médica">
+              <MappingFragment StoreEntitySet="Asignar_padecimiento_a_ficha_médica">
+                <ScalarProperty Name="Código_de_asignación_padecimiento" ColumnName="Código_de_asignación_padecimiento" />
+                <ScalarProperty Name="Fecha_de_diagnóstico" ColumnName="Fecha_de_diagnóstico" />
+                <ScalarProperty Name="Padecimiento" ColumnName="Padecimiento" />
+                <ScalarProperty Name="Código_ficha_médica" ColumnName="Código_ficha_médica" />
+                <ScalarProperty Name="Estado_de_tratamiento" ColumnName="Estado_de_tratamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asignar_padre_a_adopción">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Asignar_padre_a_adopción">
+              <MappingFragment StoreEntitySet="Asignar_padre_a_adopción">
+                <ScalarProperty Name="Padre_adopción" ColumnName="Padre_adopción" />
+                <ScalarProperty Name="Adopción_de_niño" ColumnName="Adopción_de_niño" />
+                <ScalarProperty Name="Candidato_a_padre_adoptivo" ColumnName="Candidato_a_padre_adoptivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Candidatos_a_padres_adoptivos">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Candidatos_a_padres_adoptivos">
+              <MappingFragment StoreEntitySet="Candidatos_a_padres_adoptivos">
+                <ScalarProperty Name="Padre_adoptivo" ColumnName="Padre_adoptivo" />
+                <ScalarProperty Name="Nombre_padre" ColumnName="Nombre_padre" />
+                <ScalarProperty Name="DPI" ColumnName="DPI" />
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+                <ScalarProperty Name="Dirección_de_trabajo" ColumnName="Dirección_de_trabajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados_de_tratamientos">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Estados_de_tratamientos">
+              <MappingFragment StoreEntitySet="Estados_de_tratamientos">
+                <ScalarProperty Name="Estado_de_tratamiento" ColumnName="Estado_de_tratamiento" />
+                <ScalarProperty Name="Nombre_estado_tratamiento" ColumnName="Nombre_estado_tratamiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fichas_médicas">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Fichas_médicas">
+              <MappingFragment StoreEntitySet="Fichas_médicas">
+                <ScalarProperty Name="Código_ficha_médica" ColumnName="Código_ficha_médica" />
+                <ScalarProperty Name="Fecha_de_emisión" ColumnName="Fecha_de_emisión" />
+                <ScalarProperty Name="Niño" ColumnName="Niño" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Géneros">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Géneros">
+              <MappingFragment StoreEntitySet="Géneros">
+                <ScalarProperty Name="Género" ColumnName="Género" />
+                <ScalarProperty Name="NombreGenero" ColumnName="NombreGenero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Niños">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Niños">
+              <MappingFragment StoreEntitySet="Niños">
+                <ScalarProperty Name="Niño" ColumnName="Niño" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="CUI_niño" ColumnName="CUI_niño" />
+                <ScalarProperty Name="Fecha_nacimiento" ColumnName="Fecha_nacimiento" />
+                <ScalarProperty Name="Género" ColumnName="Género" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Padecimientos">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Padecimientos">
+              <MappingFragment StoreEntitySet="Padecimientos">
+                <ScalarProperty Name="Padecimiento" ColumnName="Padecimiento" />
+                <ScalarProperty Name="Nombre_padecimiento" ColumnName="Nombre_padecimiento" />
+                <ScalarProperty Name="Notas_adicionales" ColumnName="Notas_adicionales" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regreso_de_niños">
+            <EntityTypeMapping TypeName="DatabaseHogarModel.Regreso_de_niños">
+              <MappingFragment StoreEntitySet="Regreso_de_niños">
+                <ScalarProperty Name="Regreso_de_niño" ColumnName="Regreso_de_niño" />
+                <ScalarProperty Name="Adopción_de_niño" ColumnName="Adopción_de_niño" />
+                <ScalarProperty Name="Fecha_regreso" ColumnName="Fecha_regreso" />
+                <ScalarProperty Name="Motivo_regreso" ColumnName="Motivo_regreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

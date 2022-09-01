@@ -1,0 +1,42 @@
+﻿@model ProyectoHogarDulceCorazonJoelGramajo.Models.Regreso_de_niños
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Regreso_de_niños</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_regreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_regreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo_regreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo_regreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adopciones.Adopción_de_niño)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adopciones.Adopción_de_niño)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Regreso_de_niño }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

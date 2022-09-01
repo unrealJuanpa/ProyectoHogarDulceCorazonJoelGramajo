@@ -1,0 +1,42 @@
+﻿@model ProyectoHogarDulceCorazonJoelGramajo.Models.Adopciones
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Adopciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_adopción)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_adopción)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_mudanza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_mudanza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Niños.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Niños.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Adopción_de_niño }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

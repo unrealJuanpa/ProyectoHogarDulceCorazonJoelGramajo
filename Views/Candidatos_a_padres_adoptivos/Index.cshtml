@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoHogarDulceCorazonJoelGramajo.Models.Candidatos_a_padres_adoptivos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_padre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DPI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dirección)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teléfono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dirección_de_trabajo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre_padre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DPI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dirección)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teléfono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dirección_de_trabajo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Padre_adoptivo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Padre_adoptivo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Padre_adoptivo })
+        </td>
+    </tr>
+}
+
+</table>

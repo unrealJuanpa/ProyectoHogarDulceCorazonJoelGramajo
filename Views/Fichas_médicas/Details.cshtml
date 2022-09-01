@@ -1,0 +1,34 @@
+﻿@model ProyectoHogarDulceCorazonJoelGramajo.Models.Fichas_médicas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Fichas_médicas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_de_emisión)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_de_emisión)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Niños.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Niños.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Código_ficha_médica }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

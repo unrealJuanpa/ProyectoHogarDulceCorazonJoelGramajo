@@ -1,0 +1,50 @@
+﻿@model ProyectoHogarDulceCorazonJoelGramajo.Models.Asignar_padre_a_adopción
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Asignar_padre_a_adopción</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Padre_adopción)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adopción_de_niño, "Adopción_de_niño", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Adopción_de_niño", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Adopción_de_niño, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Candidato_a_padre_adoptivo, "Candidato_a_padre_adoptivo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Candidato_a_padre_adoptivo", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Candidato_a_padre_adoptivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

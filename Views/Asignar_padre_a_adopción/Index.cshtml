@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProyectoHogarDulceCorazonJoelGramajo.Models.Asignar_padre_a_adopción>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Adopciones.Adopción_de_niño)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Candidatos_a_padres_adoptivos.Nombre_padre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adopciones.Adopción_de_niño)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Candidatos_a_padres_adoptivos.Nombre_padre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Padre_adopción }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Padre_adopción }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Padre_adopción })
+        </td>
+    </tr>
+}
+
+</table>
