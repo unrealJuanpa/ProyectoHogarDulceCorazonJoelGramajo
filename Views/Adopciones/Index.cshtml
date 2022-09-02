@@ -11,13 +11,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_adopción)
+            Fecha adopción
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_mudanza)
+            Fecha mudanza
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Niños.Nombre)
+            Nombre niño
         </th>
         <th></th>
     </tr>
@@ -36,8 +36,8 @@
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.Adopción_de_niño }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Adopción_de_niño }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Adopción_de_niño })
+                @Html.ActionLink("Detalles", "Details", new { id = item.Adopción_de_niño }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Adopción_de_niño })
             </td>
         </tr>
     }
