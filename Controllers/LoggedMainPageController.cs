@@ -10,6 +10,7 @@ using ProyectoHogarDulceCorazonJoelGramajo.Models;
 
 namespace ProyectoHogarDulceCorazonJoelGramajo.Controllers
 {
+    [Authorize]
 
     public class LoggedMainPageController : Controller
     {
