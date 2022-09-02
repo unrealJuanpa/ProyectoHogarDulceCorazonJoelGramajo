@@ -4,30 +4,91 @@
     ViewBag.Title = "Home Page";
 }
 
+
+<style>
+    .my_style {
+        text-align:center;
+    }
+
+    .my_style_p {
+
+    }
+</style>
+
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <div style="text-align:center;">
+        <h1>Menú de opciones</h1>
+    </div>
+    <div style="text-align:center;">
+        <p class="lead">Seleccione una opción para administrar la información del sistema.</p>
+    </div>
+    
+    <br />
+
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Géneros", "Index", "Géneros")
+        </p>
+    </div>
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Padecimientos", "Index", "Padecimientos")
+        </p>
+    </div>
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Estados de tratamientos", "Index", "Estados_de_tratamientos")
+        </p>
+    </div>
+
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Niños", "Index", "Niños")
+        </p>
+    </div>
+
+
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Fichas médicas", "Index", "Fichas_médicas")
+        </p>
+    </div>
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Asignar padecimiento a ficha médica", "Index", "Asignar_padecimiento_a_ficha_médica")
+        </p>
+    </div>
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Candidatos a padres adoptivos", "Index", "Candidatos_a_padres_adoptivos")
+        </p>
+    </div>
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Adopciones", "Index", "Adopciones")
+        </p>
+    </div>
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Asignar padre a adopción", "Index", "Asignar_padre_a_adopción")
+        </p>
+    </div>
+
+    <div class="my_style">
+        <p class="my_style_p">
+            @Html.ActionLink("Regreso de niños", "Index", "Regreso_de_niños")
+        </p>
+    </div>
+
+
 </div>
 
-<div class="row">
-    @Html.ActionLink("Adopción", "Index", "Adopción");
-    <br />
-    @Html.ActionLink("Asignar_padecimiento_a_ficha_medica", "Index", "Asignar_padecimiento_a_ficha_medica");
-    <br />
-    @Html.ActionLink("Asignar_padre_a_adopción", "Index", "Asignar_padre_a_adopción");
-    <br />
-    @Html.ActionLink("Candidato_a_padre_adoptivo", "Index", "Candidato_a_padre_adoptivo");
-    <br />
-    @Html.ActionLink("Estado_de_tratamiento", "Index", "Estado_de_tratamiento");
-    <br />
-    @Html.ActionLink("Ficha_médica", "Index", "Ficha_médica");
-    <br />
-    @Html.ActionLink("Géneros", "Index", "Géneros");
-    <br />
-    @Html.ActionLink("Niños", "Index", "Niños");
-    <br />
-    @Html.ActionLink("Padecimiento", "Index", "Padecimientoes");
-    <br />
-    @Html.ActionLink("Regreso_de_niños", "Index", "Regreso_de_niños");
-</div>
