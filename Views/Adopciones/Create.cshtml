@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Niño, "Niño", htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class = "control-label col-md-2">Niño</p>
             <div class="col-md-10">
                 @Html.DropDownList("Niño", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Niño, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Fecha_adopción, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class = "control-label col-md-2">Fecha adopción</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Fecha_adopción, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Fecha_adopción, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Fecha_mudanza, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p class = "control-label col-md-2">Fecha mudanza</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Fecha_mudanza, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Fecha_mudanza, "", new { @class = "text-danger" })
