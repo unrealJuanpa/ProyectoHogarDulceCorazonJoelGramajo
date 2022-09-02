@@ -1,45 +1,33 @@
 ﻿@model IEnumerable<ProyectoHogarDulceCorazonJoelGramajo.Models.Adopciones>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Home Page";
 }
 
-<h2>Index</h2>
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_adopción)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_mudanza)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Niños.Nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_adopción)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_mudanza)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Niños.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Adopción_de_niño }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Adopción_de_niño }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Adopción_de_niño })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="row">
+    @Html.ActionLink("Adopción", "Index", "Adopción");
+    <br />
+    @Html.ActionLink("Asignar_padecimiento_a_ficha_medica", "Index", "Asignar_padecimiento_a_ficha_medica");
+    <br />
+    @Html.ActionLink("Asignar_padre_a_adopción", "Index", "Asignar_padre_a_adopción");
+    <br />
+    @Html.ActionLink("Candidato_a_padre_adoptivo", "Index", "Candidato_a_padre_adoptivo");
+    <br />
+    @Html.ActionLink("Estado_de_tratamiento", "Index", "Estado_de_tratamiento");
+    <br />
+    @Html.ActionLink("Ficha_médica", "Index", "Ficha_médica");
+    <br />
+    @Html.ActionLink("Géneros", "Index", "Géneros");
+    <br />
+    @Html.ActionLink("Niños", "Index", "Niños");
+    <br />
+    @Html.ActionLink("Padecimiento", "Index", "Padecimientoes");
+    <br />
+    @Html.ActionLink("Regreso_de_niños", "Index", "Regreso_de_niños");
+</div>

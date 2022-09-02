@@ -10,6 +10,7 @@ using ProyectoHogarDulceCorazonJoelGramajo.Models;
 
 namespace ProyectoHogarDulceCorazonJoelGramajo.Controllers
 {
+
     public class LoggedMainPageController : Controller
     {
         private DatabaseHogarEntities db = new DatabaseHogarEntities();

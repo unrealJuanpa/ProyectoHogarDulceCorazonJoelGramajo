@@ -367,6 +367,7 @@
     <Content Include="Views\Regreso_de_niños\Index.cshtml" />
     <Content Include="Views\LoggedMain.cshtml" />
     <Content Include="Views\LoggedMainPage\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogged.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
