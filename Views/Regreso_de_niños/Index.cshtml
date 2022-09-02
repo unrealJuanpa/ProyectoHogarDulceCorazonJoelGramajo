@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Motivo_regreso)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Adopciones.Adopción_de_niño)
+            Adopción de niño
         </th>
         <th></th>
     </tr>
@@ -35,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.Adopciones.Adopción_de_niño)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Regreso_de_niño }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.Regreso_de_niño }) |
             @Html.ActionLink("Details", "Details", new { id=item.Regreso_de_niño }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Regreso_de_niño })
         </td>

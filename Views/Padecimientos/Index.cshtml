@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
 <table class="table">
     <tr>
@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.Notas_adicionales)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Padecimiento }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.Padecimiento }) |
             @Html.ActionLink("Details", "Details", new { id=item.Padecimiento }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Padecimiento })
         </td>

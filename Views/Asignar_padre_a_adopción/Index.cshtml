@@ -7,12 +7,12 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Adopciones.Adopción_de_niño)
+            Adopción de niño
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Candidatos_a_padres_adoptivos.Nombre_padre)
@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.Candidatos_a_padres_adoptivos.Nombre_padre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Padre_adopción }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.Padre_adopción }) |
             @Html.ActionLink("Details", "Details", new { id=item.Padre_adopción }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Padre_adopción })
         </td>

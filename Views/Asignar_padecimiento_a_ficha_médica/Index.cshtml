@@ -7,21 +7,21 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Fecha_de_diagnóstico)
+            Fecha de diagnóstico
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fichas_médicas.Código_ficha_médica)
+            Código de ficha médica
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Padecimientos.Nombre_padecimiento)
+            Padecimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estados_de_tratamientos.Nombre_estado_tratamiento)
+            Estado de tratamiento
         </th>
         <th></th>
     </tr>
@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Estados_de_tratamientos.Nombre_estado_tratamiento)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Código_de_asignación_padecimiento }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.Código_de_asignación_padecimiento }) |
             @Html.ActionLink("Details", "Details", new { id=item.Código_de_asignación_padecimiento }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Código_de_asignación_padecimiento })
         </td>
