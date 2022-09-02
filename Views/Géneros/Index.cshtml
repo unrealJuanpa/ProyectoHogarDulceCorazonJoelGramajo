@@ -1,18 +1,18 @@
 ﻿@model IEnumerable<ProyectoHogarDulceCorazonJoelGramajo.Models.Géneros>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Administración de géneros";
 }
 
-<h2>Index</h2>
+<h2>Administración de géneros</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NombreGenero)
+            Nombre Género
         </th>
         <th></th>
     </tr>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.NombreGenero)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Género }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Género }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Género })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Género }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Género }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Género })
         </td>
     </tr>
 }
